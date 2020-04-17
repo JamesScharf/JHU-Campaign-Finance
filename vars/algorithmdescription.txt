@@ -1,0 +1,57 @@
+Goal:
+
+1. Take a purpose phrase from the purpose category of a transaction file
+	Ex. "TEMPORARY ADMIN STAFF FOR PHONE BANK (ESTIMATE)"
+
+2. Take a list of categories that we wish to classify the purpose code under
+	Ex. "Media, Consulting, Etc."
+
+Execution thus procceeds in two directions:
+
+3. For every category in our list of categories, generate a list of related words (synonym list)
+	Ex. "Media" -> "Television, Radio, Social, CNN, Instagram, Etc"
+
+4. Then, searching through each word in the purpose phrases (Step 1), see how many of those match
+	the words in the synonym list (Step 3)
+
+5. Use determine which category has the most overlap (or potentially weighted overlap)
+	with the purpose phrase. We thus classify this purpose phrase under that category.
+
+
+Or the alternate direction:
+
+3. For every word in the purpose phrase, generate a list of related words (synonym list)
+
+4. Then, compute similarities of the purpose words to the list of the categories, and determine the
+	correct category.
+
+
+Notice, the first way uses an expansion of the categories to look for similarities with the purpose
+While the second method uses an expansion of the purpose words to look for similarities with the categories.
+
+We can use both, one, or a weighted combination to achieve our goals
+
+
+
+
+REVISIONS (10/22/18):
+
+1. Take a purpose phrase from the purpose category of a transaction file
+	Ex. "TEMPORARY ADMIN STAFF FOR PHONE BANK (ESTIMATE)"
+
+2. Take a list of categories that we wish to classify the purpose code under
+	Ex. "Media, Consulting, Etc."
+
+3. For every category in our list of categories, generate a list of related words (synonym list)
+	Ex. "Media" -> "Television, Radio, Social, CNN, Instagram, Etc"
+
+4. Get the related words of the related words (from step 3) x number of times
+
+5. If a word falls in two categories, then add it to the category for which it has the greatest score.
+        (ex. "journalism" might have a score of 2 in "media", but a score of "1" in category "digital", so it goes to media)
+
+6. Search through each word in purpose phrases, see how many of those match the words in synonym list (defined as category words) and the derived related words.
+
+7. If a word matches those in a category (including derived words), add its score to the total of that category.
+
+8. The category with the highest value is (assumed to be) the most correct label.

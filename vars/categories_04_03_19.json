@@ -1,0 +1,10 @@
+{
+    "media": ["art", "media", "newspaper", "advertising", "ad", "advert", "tv", "news", "communications", "radio", "television"],
+    "digital": ["email", "software", "advertising", "ad", "digital", "digital advertising", "online advertising", "social media", "internet communications", "web advertising", "adwords", "google ad words","advertising - internet", "advertising - online", "web ad", "digital ad", "social media", "facebook", "twitter", "internet", "web", "online", "data software", "software", "email", "social", "google"],
+    "polling": ["polling", "surveys", "research", "survey", "opinion"],
+    "legal": ["legal","lawyers", "law", "accounting", "compliance", "finance"],
+    "field": ["field","canvassing", "canvass", "contact", "gotv", "voter contact", "gotv phone calls", "door hangers"],
+    "consulting": ["consulting","consulting", "consultant", "retainer", "consult"],
+    "administrative": ["administrative","paper","admin", "telecom", "salary", "phone", "cater", "beverage", "air", "airline", "travel", "gas", "postage", "management", "manager", "food", "refreshments"],
+    "fundraising": ["fundraising", "telemarket", "direct mail", "mail"]
+}
