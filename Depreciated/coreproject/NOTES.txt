@@ -1,4 +1,0 @@
--The count functionality that caps the similar word section at 
-40 is not functional.
-
-- 

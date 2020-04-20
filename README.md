@@ -12,4 +12,4 @@ The repository of the campaign finance classification algorithms used by the Joh
 
 **This does not include data or all of the code due to Github's project size restrictions. For all code, please contact Adam Sheingate at the Johns Hopkins Department of Political Science.**
 
-To run the SGD train/test routine, uncomment lines with # and comment out the following line.
+To run the SGD train/test routine, uncomment lines with ## and comment out the following line. Once you receive the data from Adam Sheingate, copy and paste it into the "rawdata" folder.
