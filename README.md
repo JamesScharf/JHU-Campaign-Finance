@@ -7,7 +7,6 @@ The repository of the campaign finance classification algorithms used by the Joh
 3. Numpy
 4. Datamuse
 5. Pandas
-6. Tensorflow
 7. Python 3+
 
 **This does not include data or all of the code due to Github's project size restrictions. For all code, please contact Adam Sheingate at the Johns Hopkins Department of Political Science.**
