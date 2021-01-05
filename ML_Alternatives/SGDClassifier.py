@@ -12,6 +12,7 @@ from nltk import word_tokenize
 import datamuse
 import json
 from sklearn.metrics import classification_report
+import argparse
 
 vectorizer = TfidfVectorizer(use_idf = False, analyzer="word", binary=True, max_features=4000)
 
@@ -83,8 +84,10 @@ synonyms = synList(catWords)
 
 def processData():
     
-    ##unprocessed = pd.read_csv("comboTraining-train.tsv")
-    unprocessed = pd.read_csv("comboTraining.csv")
+    if train == True:
+        unprocessed = pd.read_csv("comboTraining-train.tsv")
+    else:
+        unprocessed = pd.read_csv("comboTraining.csv")
     corpus = unprocessed["Purpose Code"].astype(str).values
 
     #process
@@ -142,9 +145,33 @@ def categorizePhrase(phrase):
     predicted = makePrediction(clf, tempX, valToNums)
     return predicted
 
-X, y, valToNums = processData()
-global clf
-clf = linear_model.SGDClassifier(max_iter=2000, tol=1e-3, loss="hinge")
-clf.fit(X, y) 
-
 ##test(clf, valToNums)
+
+if __name__ == "__main__":
+
+    global train
+    train = False
+    parser = argparse.ArgumentParser(description="Train the SGD classifier on campaign finance data.")
+    parser.add_argument('train', help='TRUE to train the script and output test data. FALSE if not.')
+    parser.add_argument('--execute', help='File path to CSV you want to categorize.')
+    parser.add_argument('--csv_column', help='The CSV column which has the purpose codes.')
+
+    args = parser.parse_args()
+
+
+    if args.train == "TRUE":
+        train = True
+    else:
+        train = False
+    X, y, valToNums = processData()
+    global clf
+    clf = linear_model.SGDClassifier(max_iter=2000, tol=1e-3, loss="hinge")
+    clf.fit(X, y) 
+
+    if args.train == "TRUE":
+        test(clf, valToNums)
+    else:
+        purposeCodes = pd.read_csv(args.execute)
+        purposeCodes["Linted_Pur"] = purposeCodes[args.csv_column].str.replace("\d+", "")
+        purposeCodes["category"] = purposeCodes["Linted_Pur"].astype(str).apply(categorizePhrase)
+        purposeCodes.to_csv("sgd_classifier_output.csv")
